@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Booking</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body { font-family: 'Quicksand', sans-serif; background:#f3e5f5; }
+</style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-6">
+
+<div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8">
+
+<!-- Language Toggle -->
+<div class="flex justify-end mb-4">
+  <button id="lang-toggle" type="button"
+    class="text-sm px-3 py-1 border rounded-lg border-purple-400 text-purple-800">
+    English
+  </button>
+</div>
+
+<h1 class="text-3xl font-bold text-center mb-8 text-purple-900"
+    data-ja="Glico´s room"
+    data-en="Glico’s Room – Session Booking">
+  Glico´s room
+</h1>
+
+<form id="booking-form"
+      action="https://formspree.io/f/xkorrgna"
+      method="POST"
+      class="space-y-6">
+
+<!-- Name -->
+<label class="block text-sm font-medium text-purple-900"
+       data-ja="お名前 *" data-en="Name *">お名前 *</label>
+<input type="text" name="name" required
+       class="w-full px-4 py-3 border-2 rounded-lg border-purple-400">
+
+<!-- Email -->
+<label class="block text-sm font-medium text-purple-900"
+       data-ja="メールアドレス *" data-en="Email *">メールアドレス *</label>
+<input type="email" name="email" required
+       class="w-full px-4 py-3 border-2 rounded-lg border-purple-400">
+
+<!-- Phone -->
+<label class="block text-sm font-medium text-purple-900"
+       data-ja="電話番号（任意）" data-en="Phone (optional)">電話番号（任意）</label>
+<input type="tel" name="phone"
+       class="w-full px-4 py-3 border-2 rounded-lg border-purple-400">
+
+<!-- Date & Time -->
+<label class="block text-sm font-medium text-purple-900"
+       data-ja="第一希望日 *" data-en="Preferred Date *">第一希望日 *</label>
+<div class="grid grid-cols-2 gap-4">
+  <input type="date" name="date" required class="border-2 rounded-lg px-4 py-3 border-purple-400">
+  <input type="time" name="time" required class="border-2 rounded-lg px-4 py-3 border-purple-400">
+</div>
+
+<!-- Menu -->
+<label class="block text-sm font-medium text-purple-900"
+       data-ja="メニュー *" data-en="Menu *">メニュー *</label>
+<select name="menu" id="menu"
+        required class="w-full px-4 py-3 border-2 rounded-lg border-purple-400">
+  <option value="">Select</option>
+  <option>90分 29,000円</option>
+  <option>120分 39,000円</option>
+  <option>180分 46,000円</option>
+  <option>百巻夜行（180分）36,000円</option>
+  <option>喫茶去 counseling（90分）20,000円</option>
+</select>
+
+<p id="deposit-note"
+   class="hidden text-sm mt-2 text-purple-700"
+   data-ja="※選択内容によっては、事前にデポジットをお願いする場合がございます。"
+   data-en="*Depending on the selected session, an advance deposit may be required.">
+  ※選択内容によっては、事前にデポジットをお願いする場合がございます。
+</p>
+
+<!-- Area -->
+<label class="block text-sm font-medium text-purple-900"
+       data-ja="エリア *" data-en="Area *">エリア *</label>
+<select name="area" required
+        class="w-full px-4 py-3 border-2 rounded-lg border-purple-400">
+  <option value="">Select</option>
+  <option>渋谷</option>
+  <option>新宿</option>
+  <option>アルファイン</option>
+  <option>出張</option>
+</select>
+
+<!-- Message -->
+<label class="block text-sm font-medium text-purple-900"
+       data-ja="ご要望・メッセージ" data-en="Message">ご要望・メッセージ</label>
+<textarea name="message" rows="4"
+  placeholder="初回／リピートなど"
+  class="w-full px-4 py-3 border-2 rounded-lg border-purple-400"></textarea>
+
+<!-- Notice -->
+<div class="border-2 rounded-lg p-4 border-purple-300 bg-purple-50">
+<p class="font-semibold text-purple-900"
+   data-ja="【ご利用上の注意】"
+   data-en="[Important Information]">【ご利用上の注意】</p>
+
+<ul class="text-sm text-purple-800 list-disc list-inside mt-2 space-y-1">
+<li data-ja="18歳以下のご利用はできません。"
+    data-en="Guests under the age of 18 are not permitted.">18歳以下のご利用はできません。</li>
+
+<li data-ja="衛生上問題があると思われる行為や本番行為は一切おこないません。"
+    data-en="For hygiene and safety reasons, certain acts are not provided.">
+    衛生上問題があると思われる行為や本番行為は一切おこないません。
+</li>
+
+<li data-ja="プレイ内容によっては、合計金額に見合ったデポジットを予め頂戴する場合があります。"
+    data-en="Depending on the requested session content, an advance deposit may be required.">
+    プレイ内容によっては、合計金額に見合ったデポジットを予め頂戴する場合があります。
+</li>
+</ul>
+
+<label class="flex items-center gap-2 mt-3 text-sm text-purple-900">
+  <input type="checkbox" required>
+  <span data-ja="上記内容に同意します" data-en="I agree to the above information">
+    上記内容に同意します
+  </span>
+</label>
+</div>
+
+<!-- Spam trap -->
+<div style="display:none;">
+<input type="text" name="company">
+</div>
+
+<button type="submit" id="submit-btn"
+        class="w-full py-4 rounded-lg text-white font-semibold shadow-lg bg-purple-700">
+<span id="submit-text"
+      data-ja="この内容で予約する"
+      data-en="Submit Booking">
+この内容で予約する
+</span>
+</button>
+
+</form>
+
+<div id="success-msg"
+     class="hidden mt-6 text-center p-6 rounded-lg bg-green-100 text-green-800">
+<p class="font-bold text-xl mb-2"
+   data-ja="仮予約を受け付けました"
+   data-en="Your booking request has been received">
+仮予約を受け付けました
+</p>
+<p class="text-sm"
+   data-ja="内容確認後、24時間以内にご連絡いたします。"
+   data-en="We will contact you within 24 hours.">
+内容確認後、24時間以内にご連絡いたします。
+</p>
+</div>
+
+</div>
+
+<script>
+/* language toggle */
+let lang = 'ja';
+document.getElementById('lang-toggle').onclick = () => {
+  lang = lang === 'ja' ? 'en' : 'ja';
+  document.querySelectorAll('[data-ja]').forEach(el=>{
+    el.textContent = el.dataset[lang];
+  });
+  document.getElementById('lang-toggle').textContent = lang === 'ja' ? 'English' : '日本語';
+};
+
+/* deposit note */
+const depositMenus = ['180分 46,000円','百巻夜行（180分）36,000円'];
+document.getElementById('menu').onchange = e=>{
+  document.getElementById('deposit-note').classList.toggle(
+    'hidden', !depositMenus.includes(e.target.value)
+  );
+};
+
+/* submit */
+const form=document.getElementById('booking-form');
+form.onsubmit=async e=>{
+e.preventDefault();
+const btn=document.getElementById('submit-btn');
+btn.disabled=true;
+document.getElementById('submit-text').textContent='Sending...';
+try{
+const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+if(!res.ok)throw 0;
+form.classList.add('hidden');
+document.getElementById('success-msg').classList.remove('hidden');
+}catch{
+alert('送信に失敗しました');
+btn.disabled=false;
+}
+};
+</script>
+
+</body>
+</html>
