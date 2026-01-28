@@ -9,183 +9,148 @@
   <style type="text/css">
     p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
     p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
-    span.s1 {color: #dca10d}
   </style>
 </head>
 <body>
-<p class="p1">&lt;!doctype html&gt;</p>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
 <p class="p1">&lt;html lang="ja"&gt;</p>
 <p class="p1">&lt;head&gt;</p>
 <p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;SM Session Booking&lt;/title&gt;</p>
 <p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;SM Session Booking&lt;/title&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Tailwind CDN --&gt;</p>
 <p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
 <p class="p1">&lt;/head&gt;</p>
 <p class="p2"><br></p>
 <p class="p1">&lt;body class="bg-purple-100 min-h-screen flex items-center justify-center p-6"&gt;</p>
 <p class="p2"><br></p>
-<p class="p1">&lt;div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8"&gt;</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 言語切替 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="flex justify-end gap-2 mb-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="switchLanguage('ja')" class="text-sm underline"&gt;日本語&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="switchLanguage('en')" class="text-sm underline"&gt;English&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Language Switch --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="flex justify-end gap-4 mb-4 text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button type="button" onclick="switchLang('ja')" class="underline"&gt;日本語&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button type="button" onclick="switchLang('en')" class="underline"&gt;English&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1 class="text-3xl font-bold text-center mb-8 text-purple-900"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Glico's Room</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;form</p>
+<p class="p1"><span class="Apple-converted-space">      </span>action="https://formspree.io/f/xkorrgna"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>method="POST"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>class="space-y-6"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>onsubmit="handleSubmit()"</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Name --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label data-ja="お名前 *" data-en="Name *" class="block text-sm font-medium mb-1"&gt;お名前 *&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" name="name" required class="w-full border-2 border-purple-300 rounded-lg px-4 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Email --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label data-ja="メールアドレス *" data-en="Email *" class="block text-sm font-medium mb-1"&gt;メールアドレス *&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="email" name="email" required class="w-full border-2 border-purple-300 rounded-lg px-4 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- First Date --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="block text-sm font-medium mb-1"&gt;第一希望日 *&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="date" name="first_date" required class="border-2 border-purple-300 rounded-lg px-4 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="time" name="first_time" required class="border-2 border-purple-300 rounded-lg px-4 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Second Date --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="block text-sm font-medium mb-1"&gt;第二希望日&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="date" name="second_date" class="border-2 border-purple-300 rounded-lg px-4 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="time" name="second_time" class="border-2 border-purple-300 rounded-lg px-4 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Menu --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="block text-sm font-medium mb-1"&gt;メニュー *&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;select id="menu" name="menu" required class="w-full border-2 border-purple-300 rounded-lg px-4 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value=""&gt;選択してください&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="BDSM"&gt;BDSM セッション&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="MUMMY"&gt;百巻夜行 mummy session（180分）36000円&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="COUNSEL"&gt;喫茶去 counseling（90分）20000円&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- BDSM only --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="bdsm-extra" class="hidden space-y-3"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label class="block text-sm font-medium mb-1"&gt;利用時間 *&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;select name="duration" class="w-full border-2 border-purple-300 rounded-lg px-4 py-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value=""&gt;選択してください&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="90分 30000円"&gt;90分 30000円&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="120分 39000円"&gt;120分 39000円&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="180分 46000円"&gt;180分 46000円&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="p-3 rounded-lg bg-purple-50 text-sm font-bold"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span data-ja="※ プレイ内容によりデポジットをお願いする場合があります。"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data-en="A deposit may be required depending on the session content."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>※ プレイ内容によりデポジットをお願いする場合があります。</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Agreement --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="flex gap-2 text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="checkbox" required onclick="recordAgree()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span data-ja="ご利用上の注意を確認し、同意します。"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data-en="I have read and agree to the terms."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ご利用上の注意を確認し、同意します。</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Hidden --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="hidden" name="agreement" id="agreement"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="hidden" name="agreement_time" id="agreement_time"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button type="submit" class="w-full bg-purple-700 text-white py-4 rounded-lg font-semibold"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>予約を送信</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/form&gt;</p>
+<p class="p2"><br></p>
 <p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1 class="text-3xl font-bold text-center mb-8 text-purple-900"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>Glico's Room</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/h1&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;form id="booking-form"</p>
-<p class="p1"><span class="Apple-converted-space">        </span>action="https://formspree.io/f/<a href="https://formspree.io/f/xkorrgna"><span class="s1">xkorrgna</span></a>"</p>
-<p class="p1"><span class="Apple-converted-space">        </span>method="POST"</p>
-<p class="p1"><span class="Apple-converted-space">        </span>class="space-y-6"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 名前 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="text-sm font-medium text-purple-900"</p>
-<p class="p1"><span class="Apple-converted-space">             </span>data-ja="お名前 *"</p>
-<p class="p1"><span class="Apple-converted-space">             </span>data-en="Name *"&gt;お名前 *&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="text" name="お名前" required</p>
-<p class="p1"><span class="Apple-converted-space">             </span>class="w-full border-2 rounded-lg px-4 py-3 border-purple-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- メール --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="text-sm font-medium text-purple-900"</p>
-<p class="p1"><span class="Apple-converted-space">             </span>data-ja="メールアドレス *"</p>
-<p class="p1"><span class="Apple-converted-space">             </span>data-en="Email *"&gt;メールアドレス *&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="email" name="email" required</p>
-<p class="p1"><span class="Apple-converted-space">             </span>class="w-full border-2 rounded-lg px-4 py-3 border-purple-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 第一希望日 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="text-sm font-medium text-purple-900"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>第一希望日 *</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="date" name="第一希望日" required</p>
-<p class="p1"><span class="Apple-converted-space">               </span>class="border-2 rounded-lg px-4 py-3 border-purple-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="time" name="第一希望時間" required</p>
-<p class="p1"><span class="Apple-converted-space">               </span>class="border-2 rounded-lg px-4 py-3 border-purple-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 第二希望日 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="text-sm font-medium text-purple-900"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>第二希望日</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="date" name="第二希望日"</p>
-<p class="p1"><span class="Apple-converted-space">               </span>class="border-2 rounded-lg px-4 py-3 border-purple-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="time" name="第二希望時間"</p>
-<p class="p1"><span class="Apple-converted-space">               </span>class="border-2 rounded-lg px-4 py-3 border-purple-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- メニュー --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="text-sm font-medium text-purple-900"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>メニュー *</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="menu-select" name="メニュー" required</p>
-<p class="p1"><span class="Apple-converted-space">              </span>class="w-full border-2 rounded-lg px-4 py-3 border-purple-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value=""&gt;選択してください&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="BDSMセッション"&gt;BDSM セッション&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="百巻夜行 mummy session（180分）36000円"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>百巻夜行 mummy session（180分）36000円</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="喫茶去 counseling（90分）20000円"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>喫茶去 counseling（90分）20000円</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- BDSM専用：利用時間 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="duration-wrapper" class="hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="text-sm font-medium text-purple-900"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>利用時間 *</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select name="利用時間"</p>
-<p class="p1"><span class="Apple-converted-space">              </span>class="w-full border-2 rounded-lg px-4 py-3 border-purple-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value=""&gt;選択してください&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="90分 30000円"&gt;90分 30000円&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="120分 39000円"&gt;120分 39000円&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="180分 46000円"&gt;180分 46000円&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- BDSM専用注意文 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="deposit-note"</p>
-<p class="p1"><span class="Apple-converted-space">         </span>class="hidden p-4 rounded-lg text-sm bg-purple-50 text-purple-900"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p data-ja="※ プレイ内容によっては、合計金額に見合ったデポジットを事前にお願いする場合があります。"</p>
-<p class="p1"><span class="Apple-converted-space">         </span>data-en="Please note that a deposit may be requested depending on the session content."&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>※ プレイ内容によっては、合計金額に見合ったデポジットを事前にお願いする場合があります。</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 同意チェック --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="flex items-start gap-2 text-sm text-purple-900"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="checkbox" id="agree-checkbox" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span data-ja="ご利用上の注意を確認し、内容に同意します。"</p>
-<p class="p1"><span class="Apple-converted-space">              </span>data-en="I have read and agree to the terms and conditions."&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>ご利用上の注意を確認し、内容に同意します。</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- hidden --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="hidden" name="同意状態" id="agree-status"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="hidden" name="同意チェック時刻" id="agree-time"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="hidden" name="重要確認事項" id="mail-note"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 送信 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button type="submit"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>class="w-full py-4 rounded-lg bg-purple-700 text-white font-semibold"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>予約を送信</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/form&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
 <p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const menuSelect = document.getElementById('menu-select');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const durationWrapper = document.getElementById('duration-wrapper');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const depositNote = document.getElementById('deposit-note');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const mailNote = document.getElementById('mail-note');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const agreeCheckbox = document.getElementById('agree-checkbox');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const agreeTime = document.getElementById('agree-time');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const agreeStatus = document.getElementById('agree-status');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const menu = document.getElementById('menu');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const bdsmExtra = document.getElementById('bdsm-extra');</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>menuSelect.addEventListener('change', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (menuSelect.value === 'BDSMセッション') {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>durationWrapper.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>depositNote.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>mailNote.value =</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'【重要確認事項｜BDSMセッション】\n' +</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'プレイ内容によっては、合計金額に見合ったデポジットを事前にお願いする場合があります。';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>durationWrapper.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>depositNote.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>mailNote.value =</p>
-<p class="p1"><span class="Apple-converted-space">        </span>'【ご利用上の注意】18歳以下の方はご利用いただけません。';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>menu.addEventListener('change', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>bdsmExtra.classList.toggle('hidden', menu.value !== 'BDSM');</p>
 <p class="p1"><span class="Apple-converted-space">  </span>});</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>agreeCheckbox.addEventListener('change', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (agreeCheckbox.checked) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>agreeStatus.value = '同意あり';</p>
-<p class="p1"><span class="Apple-converted-space">      </span>agreeTime.value = new Date().toISOString();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function recordAgree() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('agreement').value = '同意あり';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('agreement_time').value = new Date().toISOString();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function switchLanguage(lang) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function switchLang(lang) {</p>
 <p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('[data-ja]').forEach(el =&gt; {</p>
 <p class="p1"><span class="Apple-converted-space">      </span>el.textContent = el.dataset[lang];</p>
 <p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function handleSubmit() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// placeholder（拡張用）</p>
 <p class="p1"><span class="Apple-converted-space">  </span>}</p>
 <p class="p1">&lt;/script&gt;</p>
 <p class="p2"><br></p>
@@ -193,4 +158,3 @@
 <p class="p1">&lt;/html&gt;</p>
 </body>
 </html>
-<!-- update -->
