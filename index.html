@@ -9,61 +9,93 @@
 
 <body class="bg-purple-100 min-h-screen flex items-center justify-center p-6">
 
-<div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8">
+<div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8 space-y-6">
 
-  <!-- Language -->
-  <div class="flex justify-end gap-3 mb-4 text-sm">
+  <!-- 言語切替 -->
+  <div class="flex justify-end gap-3 text-sm">
     <button onclick="switchLang('ja')" class="underline">日本語</button>
     <button onclick="switchLang('en')" class="underline">English</button>
   </div>
 
-  <h1 class="text-3xl font-bold text-center mb-8 text-purple-900">
+  <h1 class="text-3xl font-bold text-center text-purple-900">
     Glico's Room
   </h1>
 
-  <form
-    action="https://formspree.io/f/xkorrgna"
-    method="POST"
-    class="space-y-6"
-    onsubmit="return handleSubmit();"
-  >
+  <!-- 注意事項 -->
+  <div id="notice-box" class="bg-red-50 p-4 rounded-lg text-sm space-y-2">
+    <strong id="notice-title"
+      data-ja="【ご利用上の注意】"
+      data-en="[Important Notes]">
+      【ご利用上の注意】
+    </strong>
+    <ul class="list-disc list-inside">
+      <li data-ja="18歳以下のご利用はできません。"
+          data-en="Guests under 18 years old are not permitted.">
+        18歳以下のご利用はできません。
+      </li>
+      <li data-ja="衛生上問題がある行為や本番行為は一切行いません。"
+          data-en="No unsafe or prohibited activities will be provided.">
+        衛生上問題がある行為や本番行為は一切行いません。
+      </li>
+      <li id="deposit-line" class="hidden"
+          data-ja="プレイ内容によっては合計金額に見合ったデポジットを事前にお願いする場合があります。"
+          data-en="In some cases, a deposit may be requested in advance depending on the session.">
+        プレイ内容によっては合計金額に見合ったデポジットを事前にお願いする場合があります。
+      </li>
+    </ul>
+  </div>
 
-    <!-- Name -->
+  <form action="https://formspree.io/f/xkorrgna"
+        method="POST"
+        class="space-y-6"
+        onsubmit="return handleSubmit();">
+
+    <!-- 名前 -->
     <div>
-      <label data-ja="お名前 *" data-en="Name *" class="font-medium">お名前 *</label>
-      <input required name="name"
-        class="w-full border-2 rounded-lg px-4 py-3 border-purple-400">
+      <label class="font-medium" data-ja="お名前 *" data-en="Name *">お名前 *</label>
+      <input name="name" required class="w-full border-2 rounded-lg px-4 py-3">
     </div>
 
-    <!-- Email -->
+    <!-- メール -->
     <div>
-      <label data-ja="メールアドレス *" data-en="Email *" class="font-medium">メールアドレス *</label>
-      <input required type="email" name="email"
-        class="w-full border-2 rounded-lg px-4 py-3 border-purple-400">
+      <label class="font-medium" data-ja="メールアドレス *" data-en="Email *">メールアドレス *</label>
+      <input type="email" name="email" required class="w-full border-2 rounded-lg px-4 py-3">
     </div>
 
-    <!-- 希望日 -->
+    <!-- 第一希望日 -->
     <div>
       <label class="font-medium">第一希望日 *</label>
       <div class="grid grid-cols-2 gap-3">
-        <input type="date" name="第一希望日" required class="border-2 rounded-lg px-3 py-2">
-        <input type="time" name="第一希望時間" required class="border-2 rounded-lg px-3 py-2">
+        <input type="date" name="第一希望日" required class="border-2 rounded px-3 py-2">
+        <input type="time" name="第一希望時間" required class="border-2 rounded px-3 py-2">
       </div>
     </div>
 
+    <!-- 第二希望日 -->
     <div>
       <label class="font-medium">第二希望日</label>
       <div class="grid grid-cols-2 gap-3">
-        <input type="date" name="第二希望日" class="border-2 rounded-lg px-3 py-2">
-        <input type="time" name="第二希望時間" class="border-2 rounded-lg px-3 py-2">
+        <input type="date" name="第二希望日" class="border-2 rounded px-3 py-2">
+        <input type="time" name="第二希望時間" class="border-2 rounded px-3 py-2">
       </div>
     </div>
 
-    <!-- Menu -->
+    <!-- エリア -->
+    <div>
+      <label class="font-medium" data-ja="エリア *" data-en="Area *">エリア *</label>
+      <select name="エリア" required class="w-full border-2 rounded-lg px-4 py-3">
+        <option value="">選択してください</option>
+        <option value="アルファイン">アルファイン</option>
+        <option value="渋谷">渋谷</option>
+        <option value="新宿">新宿</option>
+        <option value="その他（出張）">その他（出張）</option>
+      </select>
+    </div>
+
+    <!-- メニュー -->
     <div>
       <label class="font-medium">メニュー *</label>
-      <select id="menu" name="メニュー" required
-        class="w-full border-2 rounded-lg px-4 py-3">
+      <select id="menu" name="メニュー" required class="w-full border-2 rounded-lg px-4 py-3">
         <option value="">選択してください</option>
         <option value="BDSM">BDSM セッション</option>
         <option value="百巻夜行 mummy session（180分）36000円">
@@ -75,59 +107,56 @@
       </select>
     </div>
 
-    <!-- BDSM only -->
+    <!-- BDSM専用 -->
     <div id="bdsm-area" class="hidden space-y-3">
-      <div class="font-bold text-red-700">
-        【重要確認事項｜BDSMセッション】
-      </div>
-
       <select name="利用時間" class="w-full border-2 rounded-lg px-4 py-3">
         <option value="">利用時間を選択</option>
         <option value="90分 30000円">90分 30000円</option>
         <option value="120分 39000円">120分 39000円</option>
         <option value="180分 46000円">180分 46000円</option>
       </select>
-
-      <p data-ja="※ 内容によりデポジットをお願いする場合があります。"
-         data-en="A deposit may be requested depending on session details."
-         class="text-sm bg-purple-50 p-3 rounded">
-        ※ 内容によりデポジットをお願いする場合があります。
-      </p>
     </div>
 
-    <!-- Agreement -->
+    <!-- 同意 -->
     <label class="flex gap-2 text-sm">
       <input type="checkbox" id="agree" required>
-      <span data-ja="ご利用上の注意を確認し同意します"
-            data-en="I agree to the terms and conditions">
-        ご利用上の注意を確認し同意します
+      <span data-ja="ご利用上の注意を確認し、内容に同意します。"
+            data-en="I have read and agree to the terms and conditions.">
+        ご利用上の注意を確認し、内容に同意します。
       </span>
     </label>
 
     <!-- hidden -->
     <input type="hidden" name="同意状態" id="agreeStatus">
     <input type="hidden" name="同意時刻" id="agreeTime">
-    <input type="hidden" name="自動挿入注意文" id="autoNote">
+    <input type="hidden" name="重要確認事項" id="mailNote">
 
     <button class="w-full py-4 bg-purple-700 text-white rounded-lg font-bold">
       予約を送信
     </button>
-
   </form>
 </div>
 
 <script>
 const menu = document.getElementById('menu');
-const bdsm = document.getElementById('bdsm-area');
-const autoNote = document.getElementById('autoNote');
+const bdsmArea = document.getElementById('bdsm-area');
+const depositLine = document.getElementById('deposit-line');
+const noticeBox = document.getElementById('notice-box');
+const mailNote = document.getElementById('mailNote');
 
 menu.addEventListener('change', () => {
   if (menu.value === 'BDSM') {
-    bdsm.classList.remove('hidden');
-    autoNote.value = 'BDSMセッション：デポジットが発生する可能性あり';
+    bdsmArea.classList.remove('hidden');
+    depositLine.classList.remove('hidden');
+    noticeBox.classList.add('font-bold');
+    mailNote.value =
+      '【BDSMセッション】プレイ内容によってはデポジットをお願いする場合があります。';
   } else {
-    bdsm.classList.add('hidden');
-    autoNote.value = '通常メニュー';
+    bdsmArea.classList.add('hidden');
+    depositLine.classList.add('hidden');
+    noticeBox.classList.remove('font-bold');
+    mailNote.value =
+      '【ご利用上の注意】18歳以下不可／本番行為なし';
   }
 });
 
